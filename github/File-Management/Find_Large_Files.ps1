@@ -1,5 +1,5 @@
 #Enter drive letter. For example 'C'
-$driveLetter = "F"
+$driveLetter = "C"
 
 #Enter number for the count of the top largest items. For example '10' , which would be top ten biggest files
 #by default, its set to top 10 files

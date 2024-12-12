@@ -7,10 +7,10 @@ $results = 10
 
 try{
     Write-Host "Querying drive: $($driveLetter) ......" -ForegroundColor Blue
-    $query_drive = Get-ChildItem "$($driveLetter):\" -Recurse -ErrorAction SilentlyContinue 
+    $query_drive = Get-ChildItem "$($driveLetter):\" -Recurse -ErrorAction Stop
     Write-Host "Successfully queried for drive: $($driveLetter)" -ForegroundColor Green
 }catch{
-    Write-Error -Message "Unable to query $($driveLetter)." -Exception "$($driveLetter)"
+    Write-Error -Message "Unable to query $($driveLetter). $($_)" 
 }
 
 if($query_drive){

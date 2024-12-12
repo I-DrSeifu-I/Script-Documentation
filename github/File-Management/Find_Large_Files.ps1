@@ -1,16 +1,21 @@
 #Enter drive letter. For example 'C'
-$driveLetter = "C"
+$driveLetter = "F"
 
 #Enter number for the count of the top largest items. For example '10' , which would be top ten biggest files
 #by default, its set to top 10 files
 $results = 10
 
-try{
-    Write-Host "Querying drive: $($driveLetter) ......" -ForegroundColor Blue
-    $query_drive = Get-ChildItem "$($driveLetter):\" -Recurse -ErrorAction Stop
-    Write-Host "Successfully queried for drive: $($driveLetter)" -ForegroundColor Green
-}catch{
-    Write-Error -Message "Unable to query $($driveLetter). $($_)" 
+if(Test-Path "$($driveLetter):\"){
+    try{
+        Write-Host "Querying drive: $($driveLetter) ......" -ForegroundColor Blue
+        $query_drive = Get-ChildItem "$($driveLetter):\" -Recurse
+        Write-Host "Successfully queried for drive: $($driveLetter)" -ForegroundColor Green
+    }catch{
+        Write-Error -Message "Unable to query $($driveLetter). $($_)" 
+    }
+}else{
+    Write-Warning -Message "The specified drive is not found: $($driveLetter)"
+    exit
 }
 
 if($query_drive){
